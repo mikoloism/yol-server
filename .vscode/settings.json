@@ -1,5 +1,5 @@
 {
-	"conventionalCommits.scopes": ["config", "package", "module"],
+	"conventionalCommits.scopes": ["config", "package", "module", "vscode"],
 	"files.exclude": {
 		"**/.git": true,
 		"**/.svn": true,
@@ -12,7 +12,10 @@
 		"**/.settings": true,
 		"**/.factorypath": true,
 		"**/node_modules": true,
-		"**/.vscode": true
+		"**/.vscode": true,
+		"**/.gitignore": true,
+		"**/tsconfig.json": true,
+		"**/README.md": true
 	},
 	"explorerExclude.backup": {}
 }

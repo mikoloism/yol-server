@@ -1,0 +1,17 @@
+{
+  "name": "kend-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/kend-official/kend-server.git",
+  "author": "kend<info@kend.io>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.3",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}

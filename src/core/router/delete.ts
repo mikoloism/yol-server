@@ -11,7 +11,7 @@ function withDelete<Route extends string>(
 		const originalMethod = descriptor.value;
 
 		descriptor.value = function (...args: any[]) {
-			const [req, res] = args;
+			const [_req, res] = args;
 			const expressRouter = (this as any).expressRouter;
 
 			async function callback<T>(this: T, ...args: any[]) {

@@ -33,7 +33,7 @@ function withEndpoint<Route extends string>(
 		const originalMethod = descriptor.value;
 
 		descriptor.value = function (...args: any[]) {
-			const [req, res] = args;
+			const [_, res] = args;
 			const expressRouter = (this as any).expressRouter;
 
 			async function callback<T>(this: T, ...args: any[]) {
@@ -45,7 +45,11 @@ function withEndpoint<Route extends string>(
 				}
 			}
 
-			expressRouter[self_method].call(null, callback.bind(this));
+			expressRouter[self_method].call(
+				null,
+				routePath,
+				callback.bind(this),
+			);
 		};
 	};
 }

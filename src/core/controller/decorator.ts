@@ -1,6 +1,9 @@
 import { Router as createRouter } from 'express';
+import Server from 'core/server';
 
 function withController<Route>(baseRoute: Route) {
+	const server = Server.new();
+
 	return function decorator(constructor: any) {
 		Object.defineProperty(constructor.prototype, 'expressRouter', {
 			value: createRouter(),
@@ -15,6 +18,8 @@ function withController<Route>(baseRoute: Route) {
 			enumerable: true,
 			configurable: true,
 		});
+
+		server.register(constructor);
 	};
 }
 

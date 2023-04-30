@@ -3,14 +3,17 @@ import { createServer, type Server as HttpServer } from 'http';
 
 class Server {
 	private static self: Server | null = null;
-	public static new(port: string | number): Server {
+	public static new(port?: string | number): Server {
 		if (Server.self === null) {
-			Server.self = new Server(port);
+			if (port !== undefined) {
+				Server.self = new Server(port);
+			}
 		}
-		return Server.self;
+
+		return Server.self!;
 	}
 
-	private constructor(public port: string | number) {
+	private constructor(public port?: string | number) {
 		this.createServer();
 	}
 

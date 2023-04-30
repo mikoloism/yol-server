@@ -13,3 +13,12 @@ export default class PageController {
 		throw new Error('Endpoint not Implemented!');
 	}
 }
+
+@controller('/ping')
+export class PingController {
+	@api.get('')
+	async response_pong() {
+		console.log('server done by PING:PONG');
+		return 'pong';
+	}
+}

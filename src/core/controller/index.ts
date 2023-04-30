@@ -1,2 +1,2 @@
-export * from './controller';
+export { default, type Controller } from './controller';
 export * from './decorator';

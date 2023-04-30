@@ -12,6 +12,14 @@
 		"baseUrl": "./src",
 		"rootDir": "./src",
 		"paths": {
+			"core/*": ["core/*"],
+			"vendors/pipe": ["vendors/operator/pipe.ts"],
+			"vendors/compose": ["vendors/operator/compose.ts"],
+			"vendors/task": ["vendors/operator/task.ts"],
+			"vendors/chain": ["vendors/operator/chain.ts"],
+			"vendors/app": ["vendors/app/index.ts"],
+			"storage/base": ["vendors/storage/base.ts"],
+			"storage/cache": ["vendors/storage/cache.ts"],
 			"modules/*": ["modules/*"]
 		}
 	},

@@ -1,5 +1,13 @@
 {
-	"conventionalCommits.scopes": ["config", "package", "module", "vscode"],
+	"conventionalCommits.scopes": [
+		"config",
+		"package",
+		"module",
+		"vscode",
+		"core",
+		"core/controller",
+		"core/router"
+	],
 	"files.exclude": {
 		"**/.git": true,
 		"**/.svn": true,
@@ -17,5 +25,6 @@
 		"**/tsconfig.json": true,
 		"**/README.md": true
 	},
-	"explorerExclude.backup": {}
+	"explorerExclude.backup": {},
+	"typescript.tsdk": "node_modules\\typescript\\lib"
 }

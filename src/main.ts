@@ -1,26 +1,8 @@
-import runApp from 'vendors/app';
-import Server from 'core/server';
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
 
-const PORT = process.env.PORT || 3000;
-
-class App {
-	private server!: Server;
-
-	public constructor() {
-		this.runServer();
-	}
-
-	private runServer() {
-		this.runServerAsync();
-	}
-
-	private async runServerAsync() {
-		this.server = Server.new(PORT);
-	}
-
-	private runServerSync() {
-		this.server = Server.new(PORT);
-	}
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  await app.listen(3000);
 }
-
-runApp(App);
+bootstrap();

@@ -1,29 +1,21 @@
 {
-	"conventionalCommits.scopes": [
-		"config",
-		"package",
-		"module",
-		"vscode",
-		"core",
-		"core/controller",
-		"core/router"
-	],
-	"files.exclude": {
-		"**/.git": true,
-		"**/.svn": true,
-		"**/.hg": true,
-		"**/CVS": true,
-		"**/.DS_Store": true,
-		"**/Thumbs.db": true,
-		"**/.classpath": true,
-		"**/.project": true,
-		"**/.settings": true,
-		"**/.factorypath": true,
-		"**/node_modules": true,
-		"**/.vscode": true,
-		"**/.gitignore": true,
-		"**/README.md": true
-	},
-	"explorerExclude.backup": {},
-	"typescript.tsdk": "node_modules\\typescript\\lib"
+  "conventionalCommits.scopes": ["config", "module", "package", "vscode"],
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true,
+    "**/node_modules": true,
+    "**/.vscode": true,
+    "**/.gitignore": true,
+    "**/README.md": true
+  },
+  "explorerExclude.backup": {},
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

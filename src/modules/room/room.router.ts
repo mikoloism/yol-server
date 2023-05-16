@@ -1,6 +1,6 @@
 import { HttpStatusCode } from 'axios';
 import { Request, Response, Router } from 'express';
-import { createRedis } from '../../core/modules/redis';
+import { openRedis, redisClient } from '../../core/modules/redis';
 import { RoomStatusResponse } from './room.interface';
 import { RoomBody, RoomSchema } from './room.schema';
 import { RoomValidator } from './room.validator';
@@ -16,8 +16,8 @@ async function create_room(req: Request, res: Response) {
 		const visibility = req.body.visibility ?? 'public';
 		const created_at = new Date().toString();
 		await RoomValidator.validateRoomName(room_name);
-		const redisClient = await createRedis();
-		const roomRepository = redisClient.fetchRepository(RoomSchema);
+		const redis = await openRedis();
+		const roomRepository = redis.fetchRepository(RoomSchema);
 		const roomData: RoomBody = { room_name, created_at, visibility };
 		const roomEntity = roomRepository.createEntity(roomData as any);
 		const roomId = await roomRepository.save(roomEntity);
@@ -25,6 +25,8 @@ async function create_room(req: Request, res: Response) {
 		res.status(HttpStatusCode.Ok).send({ room_id: roomId, ...roomJson });
 	} catch (error: unknown) {
 		res.status(HttpStatusCode.InternalServerError).send({ error });
+	} finally {
+		await redisClient.close();
 	}
 }
 
@@ -44,8 +46,8 @@ router.delete('/:room_name', remove_room);
 async function remove_room(req: Request, res: Response) {
 	try {
 		const roomName = req.params.room_name ?? '';
-		const redisClient = await createRedis();
-		const roomRepository = redisClient.fetchRepository(RoomSchema);
+		const redis = await openRedis();
+		const roomRepository = redis.fetchRepository(RoomSchema);
 		await roomRepository.remove(roomName);
 		res.status(HttpStatusCode.Ok).send({
 			'room:delete': true,

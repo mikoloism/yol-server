@@ -1,8 +1,40 @@
-import { include, length, match } from 'core/validator/validator.utils';
+import { include, length, match } from '../../core/validator/validator.utils';
 import { ROOM_RESERVED_LIST } from './room.constants';
 import { RoomException } from './room.utils';
 
 export class RoomValidator {
+	public static async validateCreateReqBody(reqBody: any) {
+		try {
+			if (typeof reqBody === 'undefined') {
+				throw new RoomException('req-body is undefined');
+			}
+
+			if (Object.keys(reqBody).indexOf('room_name') === -1) {
+				throw new RoomException('req-body did not contain room_name');
+			}
+
+			if (typeof reqBody.room_name !== 'string') {
+				throw new RoomException(
+					'room_name in req-body should be string',
+				);
+			}
+
+			if (
+				Object.keys(reqBody).indexOf('visibility') !== -1 &&
+				typeof reqBody.visibility !== 'string' &&
+				['public', 'private', 'protected'].includes(reqBody.visibility)
+			) {
+				throw new RoomException(
+					'visibility should be string and some of p|p|p',
+				);
+			}
+
+			return true;
+		} catch (error: unknown) {
+			return false;
+		}
+	}
+
 	public static async validateRoomName(room_name: string) {
 		try {
 			RoomValidator.hasValidLength(room_name);

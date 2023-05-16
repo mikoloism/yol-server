@@ -13,16 +13,19 @@ import { IO_DEFAULT_OPTION } from './app.constants';
 import { gateway } from './app.gateway';
 
 // ** Modules Import
-import { RoomModule } from './room/room.module';
+import { RoomModule } from '../modules/room/room.module';
+import { PingModule } from '../modules/ping/ping.module';
 
 export class app {
 	public static app: Application;
+	public static apiRouter: express.Router;
 	public static server: HttpServer;
 	public static io: SocketServer;
 
 	public static bootstrap() {
 		// ** Implement
 		app.app = express();
+		app.apiRouter = express.Router();
 		app.server = createHttpServer(app.app);
 		app.io = new SocketServer(app.server, IO_DEFAULT_OPTION);
 
@@ -53,6 +56,8 @@ export class app {
 	}
 
 	public static useModule() {
+		PingModule.inject(app);
 		RoomModule.inject(app);
+		app.app.use('/api', app.apiRouter);
 	}
 }

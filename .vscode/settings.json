@@ -14,7 +14,9 @@
 		"**/node_modules": true,
 		"**/.vscode": true,
 		"**/.gitignore": true,
-		"**/README.md": true
+		"**/README.md": true,
+		"**/LICENSE.md": true,
+		"**/.env": false
 	},
 	"explorerExclude.backup": {},
 	"typescript.tsdk": "node_modules\\typescript\\lib"

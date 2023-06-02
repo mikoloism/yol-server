@@ -1,8 +1,4 @@
-import { Client } from 'redis-om';
+import { Redis } from 'ioredis';
 
 const url = process.env.REDIS_URL;
-
-export const redisClient = new Client();
-export async function openRedis() {
-	return await redisClient.open(url);
-}
+export const redisClient = new Redis(url);

@@ -16,7 +16,8 @@
 		"**/.gitignore": true,
 		"**/README.md": true,
 		"**/LICENSE.md": true,
-		"**/.env": true
+		"**/.env": true,
+		"**/global.d.ts": true
 	},
 	"explorerExclude.backup": {},
 	"typescript.tsdk": "node_modules\\typescript\\lib"

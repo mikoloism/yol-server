@@ -1,20 +1,22 @@
 import { include, length, match } from 'libs/validator/validator.utils';
-import { ROOM_RESERVED_LIST } from './room.constants';
-import { RoomException } from './room.utils';
+import { ROOM_RESERVED_LIST } from './create.constnats';
+import { RoomCreateException } from '../room.exception';
 
 export class RoomValidator {
 	public static async validateCreateReqBody(reqBody: any) {
 		try {
 			if (typeof reqBody === 'undefined') {
-				throw new RoomException('req-body is undefined');
+				throw new RoomCreateException('req-body is undefined');
 			}
 
 			if (Object.keys(reqBody).indexOf('room_name') === -1) {
-				throw new RoomException('req-body did not contain room_name');
+				throw new RoomCreateException(
+					'req-body did not contain room_name',
+				);
 			}
 
 			if (typeof reqBody.room_name !== 'string') {
-				throw new RoomException(
+				throw new RoomCreateException(
 					'room_name in req-body should be string',
 				);
 			}
@@ -24,7 +26,7 @@ export class RoomValidator {
 				typeof reqBody.visibility !== 'string' &&
 				['public', 'private', 'protected'].includes(reqBody.visibility)
 			) {
-				throw new RoomException(
+				throw new RoomCreateException(
 					'visibility should be string and some of p|p|p',
 				);
 			}
@@ -48,16 +50,20 @@ export class RoomValidator {
 
 	private static isReserved(room_name: string): never | void {
 		if (!include(ROOM_RESERVED_LIST, room_name)) return;
-		throw new RoomException('`room_name` is reserved');
+		throw new RoomCreateException('`room_name` is reserved');
 	}
 
 	private static isNotStartWithDigit(room_name: string): never | void {
 		if (!match(room_name, /^\d/)) return;
-		throw new RoomException("`name_name` couldn't be start with digit");
+		throw new RoomCreateException(
+			"`name_name` couldn't be start with digit",
+		);
 	}
 
 	private static hasValidLength(room_name: string): never | void {
 		if (length(room_name, { min: 3, max: 16 })) return;
-		throw new RoomException('`room_name` length should be `3` to `16`');
+		throw new RoomCreateException(
+			'`room_name` length should be `3` to `16`',
+		);
 	}
 }

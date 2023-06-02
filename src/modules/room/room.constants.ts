@@ -1,1 +1,1 @@
-export const ROOM_RESERVED_LIST = ['api', '#', '@', '!', '~'];
+export const ROOM_ROUTES_ENDPOINT = '/room';

@@ -1,4 +1,4 @@
-import { include, length, match } from '../../core/validator/validator.utils';
+import { include, length, match } from 'libs/validator/validator.utils';
 import { ROOM_RESERVED_LIST } from './room.constants';
 import { RoomException } from './room.utils';
 

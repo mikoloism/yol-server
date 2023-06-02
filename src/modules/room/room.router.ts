@@ -1,6 +1,6 @@
 import { HttpStatusCode } from 'axios';
 import { Request, Response, Router } from 'express';
-import { openRedis, redisClient } from '../../core/modules/redis';
+import { openRedis, redisClient } from 'libs/redis/redis';
 import { RoomStatusResponse } from './room.interface';
 import { RoomBody, RoomSchema } from './room.schema';
 import { RoomValidator } from './room.validator';

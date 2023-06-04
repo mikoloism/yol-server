@@ -21,3 +21,15 @@ export class RoomDeleteException extends RoomException {
 		super(message);
 	}
 }
+
+export class RoomStatusException extends RoomException {
+	public constructor(message?: string) {
+		super(message);
+	}
+}
+
+export class RoomNotExistException extends RoomStatusException {
+	public constructor(message?: string) {
+		super(message);
+	}
+}
